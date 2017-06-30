@@ -48,6 +48,7 @@ Takes in data from .dd files to fill the model.
 ### highRES_2017.gms
 
 The main model file. Has input switches
+
 |Switch|Options|Description|
 |---|---|---|
 |floating|ON/OFF|Turns on or off floating wind|
