@@ -39,8 +39,8 @@ $set floating "ON"
 $set wind_elec_loss "ON"
 $set splitwind "ON"
 
-$set inputfile "highres_data_input_b"
-$set resultsfile "highRES_results_2017_f"
+$set inputfile "highres_data_input"
+$set resultsfile "highRES_results_2017"
 
 *if RPS_on is set ON, most generators are set to be 'flexible' - not taking uktm capacities
 $set UKTMCAP "ON"
@@ -73,11 +73,6 @@ scalar RPS / %RPS_val% /;
 display RPS;
 $label RPSoff1
 
-
-*cred is cost reduction as a percentage
-
-
-
 scalar w_tol;
 w_tol = %wave_tol%;
 
@@ -86,14 +81,10 @@ $log results file: %resultsfile%
 $log outname %outname%    year: %year%   waves: %waves%
 $log wave_tol:%wave_tol%    RPS:%RPS_val%    floating_cost:%fcost% %
 
-
-
 *turn off penalty generation completely. can help with numerical difficulties. sets penalty generation to zero
 $set penalty_switch "OFF"
 
 $log no maximum depth for floating turbines
-
-
 
 $offdigit
 
