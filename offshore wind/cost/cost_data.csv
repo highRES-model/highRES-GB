@@ -1,0 +1,50 @@
+name,turbines,cost,distance,depth,capacity
+Blyth,2,1.15,1.05,6.75,4
+Teesside,27,3.22,1.85,11.50,62.1
+Aberdeen Offshore Wind Farm (EOWDC),11,3.25,2.75,25.00,92.4
+Scroby Sands,30,1.28,2.90,5.00,60
+Inner Dowsing,27,1.54,5.60,8.50,97.2
+Lynn,27,1.54,5.95,10.50,97.2
+Burbo Bank,25,1.55,7.20,3.25,90
+Gunfleet Sands,48,2.26,7.20,7.50,172.8
+Blyth Offshore Wind Demonstration site,5,8.43,7.55,40.50,41.5
+North Hoyle,30,1.35,8.15,8.75,60
+Gunfleet Sands 3 - Demonstration Project,2,4.25,8.55,8.50,12
+Lincs,75,3.70,8.55,12.25,270
+Kentish Flats Extension,15,3.03,8.70,3.25,49.5
+Burbo Bank Extension,32,3.15,8.75,9.25,254.2
+Kentish Flats,30,1.17,9.15,4.25,90
+Rhyl Flats,25,2.11,9.35,8.25,90
+Westermost Rough,35,3.66,9.60,17.25,210
+Humber Gateway,73,3.36,10.05,14.00,219
+Barrow,30,1.37,10.10,15.75,90
+Ormonde,30,2.83,10.90,19.25,150
+Robin Rigg,58,2.19,11.25,7.25,174
+Thanet,100,3.00,14.85,20.50,300
+Rampion,116,3.65,15.10,29.25,400.2
+Walney Phase 1,51,3.27,16.65,22.25,183.6
+Neart na Gaoithe,64,3.60,16.80,50.00,448
+Gwynt y Mor,160,3.61,17.00,21.25,576
+Kincardine Offshore Windfarm Project,8,5.04,17.15,66.00,49.6
+West of Duddon Sands,108,4.11,17.55,19.75,389
+Walney Phase 2,51,3.27,18.00,27.25,183.6
+Beatrice,84,4.42,18.60,43.75,588
+Inch Cape,102,3.83,22.15,46.75,784
+Sheringham Shoal,88,2.53,22.20,18.50,316.8
+Beatrice Demonstration,2,3.15,23.60,45.00,10
+London Array,175,2.69,23.80,12.00,630
+Hywind Scotland Pilot Park,5,5.07,24.85,105.25,30
+Moray Firth Eastern Development Area 1,54,3.57,26.40,43.00,504
+Moray Firth Eastern Development Area 2,54,2.70,26.40,46.50,496
+Race Bank,91,2.97,30.40,14.75,573
+Galloper Wind Farm,56,4.46,32.15,29.25,336
+Greater Gabbard,140,3.46,34.25,23.25,504
+Dudgeon,67,3.23,36.60,20.25,402
+Triton Knoll,288,4.24,36.75,16.75,825
+East Anglia ONE,102,3.50,49.60,35.75,714
+Hornsea Project Two,180,3.33,103.60,33.25,1800
+Dogger Bank - Creyke Beck A,200,3.86,139.60,24.50,1100
+Dogger Bank - Creyke Beck B,200,3.86,140.00,27.00,1100
+Dogger Bank - Teesside B,160,3.86,171.65,27.75,1200
+Dogger Bank - Teesside A,160,3.86,205.00,27.00,1200
+,,,,,
