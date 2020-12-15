@@ -1,0 +1,362 @@
+parameter 
+gen_lim_pcap_z / 
+Z1_1.InterconnectortoContinentalEurope.UP 0.0
+Z1_2.InterconnectortoContinentalEurope.UP 0.0
+Z1_3.InterconnectortoContinentalEurope.UP 0.0
+Z1_4.InterconnectortoContinentalEurope.UP 0.0
+Z2.InterconnectortoContinentalEurope.UP 0.0
+Z3.InterconnectortoContinentalEurope.UP 0.0
+Z4.InterconnectortoContinentalEurope.UP 0.0
+Z5.InterconnectortoContinentalEurope.UP 0.0
+Z6.InterconnectortoContinentalEurope.UP 0.0
+Z7.InterconnectortoContinentalEurope.UP 1.4
+Z8.InterconnectortoContinentalEurope.UP 0.0
+Z9.InterconnectortoContinentalEurope.UP 0.0
+Z10.InterconnectortoContinentalEurope.UP 0.0
+Z11.InterconnectortoContinentalEurope.UP 0.0
+Z12.InterconnectortoContinentalEurope.UP 0.0
+Z13.InterconnectortoContinentalEurope.UP 0.0
+Z14.InterconnectortoContinentalEurope.UP 0.0
+Z15.InterconnectortoContinentalEurope.UP 5.0
+Z16.InterconnectortoContinentalEurope.UP 1.0
+Z17.InterconnectortoContinentalEurope.UP 0.0
+Z1_1.InterconnectortoIreland.UP 0.0
+Z1_2.InterconnectortoIreland.UP 0.0
+Z1_3.InterconnectortoIreland.UP 0.0
+Z1_4.InterconnectortoIreland.UP 0.0
+Z2.InterconnectortoIreland.UP 0.0
+Z3.InterconnectortoIreland.UP 0.0
+Z4.InterconnectortoIreland.UP 0.0
+Z5.InterconnectortoIreland.UP 0.0
+Z6.InterconnectortoIreland.UP 0.5
+Z7.InterconnectortoIreland.UP 0.0
+Z8.InterconnectortoIreland.UP 0.0
+Z9.InterconnectortoIreland.UP 0.5
+Z10.InterconnectortoIreland.UP 0.0
+Z11.InterconnectortoIreland.UP 0.0
+Z12.InterconnectortoIreland.UP 0.0
+Z13.InterconnectortoIreland.UP 0.0
+Z14.InterconnectortoIreland.UP 0.0
+Z15.InterconnectortoIreland.UP 0.0
+Z16.InterconnectortoIreland.UP 0.0
+Z17.InterconnectortoIreland.UP 0.0
+Z1_1.NaturalgasCCGTwithCCSnewOT.UP inf
+Z1_2.NaturalgasCCGTwithCCSnewOT.UP inf
+Z1_3.NaturalgasCCGTwithCCSnewOT.UP inf
+Z1_4.NaturalgasCCGTwithCCSnewOT.UP inf
+Z2.NaturalgasCCGTwithCCSnewOT.UP inf
+Z3.NaturalgasCCGTwithCCSnewOT.UP inf
+Z4.NaturalgasCCGTwithCCSnewOT.UP inf
+Z5.NaturalgasCCGTwithCCSnewOT.UP inf
+Z6.NaturalgasCCGTwithCCSnewOT.UP inf
+Z7.NaturalgasCCGTwithCCSnewOT.UP inf
+Z8.NaturalgasCCGTwithCCSnewOT.UP inf
+Z9.NaturalgasCCGTwithCCSnewOT.UP inf
+Z10.NaturalgasCCGTwithCCSnewOT.UP inf
+Z11.NaturalgasCCGTwithCCSnewOT.UP inf
+Z12.NaturalgasCCGTwithCCSnewOT.UP inf
+Z13.NaturalgasCCGTwithCCSnewOT.UP inf
+Z14.NaturalgasCCGTwithCCSnewOT.UP 0.0
+Z15.NaturalgasCCGTwithCCSnewOT.UP inf
+Z16.NaturalgasCCGTwithCCSnewOT.UP inf
+Z17.NaturalgasCCGTwithCCSnewOT.UP inf
+Z1_1.NaturalgasOCGTnew.UP inf
+Z1_2.NaturalgasOCGTnew.UP inf
+Z1_3.NaturalgasOCGTnew.UP inf
+Z1_4.NaturalgasOCGTnew.UP inf
+Z2.NaturalgasOCGTnew.UP inf
+Z3.NaturalgasOCGTnew.UP inf
+Z4.NaturalgasOCGTnew.UP inf
+Z5.NaturalgasOCGTnew.UP inf
+Z6.NaturalgasOCGTnew.UP inf
+Z7.NaturalgasOCGTnew.UP inf
+Z8.NaturalgasOCGTnew.UP inf
+Z9.NaturalgasOCGTnew.UP inf
+Z10.NaturalgasOCGTnew.UP inf
+Z11.NaturalgasOCGTnew.UP inf
+Z12.NaturalgasOCGTnew.UP inf
+Z13.NaturalgasOCGTnew.UP inf
+Z14.NaturalgasOCGTnew.UP 0.0
+Z15.NaturalgasOCGTnew.UP inf
+Z16.NaturalgasOCGTnew.UP inf
+Z17.NaturalgasOCGTnew.UP inf
+Z1_1.Nuclear.UP 0.0
+Z1_2.Nuclear.UP 0.0
+Z1_3.Nuclear.UP inf
+Z1_4.Nuclear.UP inf
+Z2.Nuclear.UP inf
+Z3.Nuclear.UP inf
+Z4.Nuclear.UP inf
+Z5.Nuclear.UP inf
+Z6.Nuclear.UP inf
+Z7.Nuclear.UP inf
+Z8.Nuclear.UP inf
+Z9.Nuclear.UP inf
+Z10.Nuclear.UP inf
+Z11.Nuclear.UP inf
+Z12.Nuclear.UP inf
+Z13.Nuclear.UP inf
+Z14.Nuclear.UP 0.0
+Z15.Nuclear.UP inf
+Z16.Nuclear.UP inf
+Z17.Nuclear.UP inf
+/ 
+ 
+parameter 
+gen_exist_pcap_z / 
+Z1_1.Nuclear.UP 0.0
+Z1_2.Nuclear.UP 0.0
+Z1_3.Nuclear.UP 0.0
+Z1_4.Nuclear.UP 0.0
+Z2.Nuclear.UP 0.0
+Z3.Nuclear.UP 0.0
+Z4.Nuclear.UP 0.0
+Z5.Nuclear.UP 0.0
+Z6.Nuclear.UP 0.0
+Z7.Nuclear.UP 0.0
+Z8.Nuclear.UP 0.0
+Z9.Nuclear.UP 0.0
+Z10.Nuclear.UP 0.0
+Z11.Nuclear.UP 0.0
+Z12.Nuclear.UP 0.0
+Z13.Nuclear.UP 0.0
+Z14.Nuclear.UP 0.0
+Z15.Nuclear.UP 0.0
+Z16.Nuclear.UP 0.0
+Z17.Nuclear.UP 3.3
+Z1_1.InterconnectortoContinentalEurope.FX 0.0
+Z1_2.InterconnectortoContinentalEurope.FX 0.0
+Z1_3.InterconnectortoContinentalEurope.FX 0.0
+Z1_4.InterconnectortoContinentalEurope.FX 0.0
+Z2.InterconnectortoContinentalEurope.FX 0.0
+Z3.InterconnectortoContinentalEurope.FX 0.0
+Z4.InterconnectortoContinentalEurope.FX 0.0
+Z5.InterconnectortoContinentalEurope.FX 0.0
+Z6.InterconnectortoContinentalEurope.FX 0.0
+Z7.InterconnectortoContinentalEurope.FX 1.4
+Z8.InterconnectortoContinentalEurope.FX 0.0
+Z9.InterconnectortoContinentalEurope.FX 0.0
+Z10.InterconnectortoContinentalEurope.FX 0.0
+Z11.InterconnectortoContinentalEurope.FX 0.0
+Z12.InterconnectortoContinentalEurope.FX 0.0
+Z13.InterconnectortoContinentalEurope.FX 0.0
+Z14.InterconnectortoContinentalEurope.FX 0.0
+Z15.InterconnectortoContinentalEurope.FX 5.0
+Z16.InterconnectortoContinentalEurope.FX 1.0
+Z17.InterconnectortoContinentalEurope.FX 0.0
+Z1_1.InterconnectortoIreland.FX 0.0
+Z1_2.InterconnectortoIreland.FX 0.0
+Z1_3.InterconnectortoIreland.FX 0.0
+Z1_4.InterconnectortoIreland.FX 0.0
+Z2.InterconnectortoIreland.FX 0.0
+Z3.InterconnectortoIreland.FX 0.0
+Z4.InterconnectortoIreland.FX 0.0
+Z5.InterconnectortoIreland.FX 0.0
+Z6.InterconnectortoIreland.FX 0.5
+Z7.InterconnectortoIreland.FX 0.0
+Z8.InterconnectortoIreland.FX 0.0
+Z9.InterconnectortoIreland.FX 0.5
+Z10.InterconnectortoIreland.FX 0.0
+Z11.InterconnectortoIreland.FX 0.0
+Z12.InterconnectortoIreland.FX 0.0
+Z13.InterconnectortoIreland.FX 0.0
+Z14.InterconnectortoIreland.FX 0.0
+Z15.InterconnectortoIreland.FX 0.0
+Z16.InterconnectortoIreland.FX 0.0
+Z17.InterconnectortoIreland.FX 0.0
+Z1_1.Windoffshore.FX 0.0
+Z1_2.Windoffshore.FX 0.0
+Z1_3.Windoffshore.FX 0.01
+Z1_4.Windoffshore.FX 0.0
+Z2.Windoffshore.FX 0.0
+Z3.Windoffshore.FX 0.0
+Z4.Windoffshore.FX 0.0
+Z5.Windoffshore.FX 0.007
+Z6.Windoffshore.FX 0.174
+Z7.Windoffshore.FX 0.0661
+Z8.Windoffshore.FX 0.0
+Z9.Windoffshore.FX 1.8122
+Z10.Windoffshore.FX 1.9592
+Z11.Windoffshore.FX 0.0
+Z12.Windoffshore.FX 0.0
+Z13.Windoffshore.FX 0.0
+Z14.Windoffshore.FX 0.0
+Z15.Windoffshore.FX 1.0795
+Z16.Windoffshore.FX 0.0
+Z17.Windoffshore.FX 0.0
+Z1_1.Windonshore.FX 0.007
+Z1_2.Windonshore.FX 0.017
+Z1_3.Windonshore.FX 0.694
+Z1_4.Windonshore.FX 0.341
+Z2.Windonshore.FX 0.586
+Z3.Windonshore.FX 0.491
+Z4.Windonshore.FX 0.146
+Z5.Windonshore.FX 2.228
+Z6.Windonshore.FX 0.821
+Z7.Windonshore.FX 0.57
+Z8.Windonshore.FX 0.731
+Z9.Windonshore.FX 0.364
+Z10.Windonshore.FX 0.0
+Z11.Windonshore.FX 0.196
+Z12.Windonshore.FX 2.464
+Z13.Windonshore.FX 0.405
+Z14.Windonshore.FX 0.015
+Z15.Windonshore.FX 0.0
+Z16.Windonshore.FX 0.069
+Z17.Windonshore.FX 0.175
+Z1_1.Solar.FX 0.0
+Z1_2.Solar.FX 0.0
+Z1_3.Solar.FX 0.006
+Z1_4.Solar.FX 0.019
+Z2.Solar.FX 0.078
+Z3.Solar.FX 0.149
+Z4.Solar.FX 0.006
+Z5.Solar.FX 0.155
+Z6.Solar.FX 0.026
+Z7.Solar.FX 0.368
+Z8.Solar.FX 0.633
+Z9.Solar.FX 0.776
+Z10.Solar.FX 0.478
+Z11.Solar.FX 1.422
+Z12.Solar.FX 1.441
+Z13.Solar.FX 1.978
+Z14.Solar.FX 0.175
+Z15.Solar.FX 0.356
+Z16.Solar.FX 0.963
+Z17.Solar.FX 2.127
+/ 
+ 
+parameter 
+gen_emisfac / 
+InterconnectortoContinentalEurope 0.0
+InterconnectortoIreland 0.0
+NaturalgasCCGTwithCCSnewOT 0.04421673
+NaturalgasOCGTnew 0.52842083
+Solar 0.0
+Windoffshore 0.0
+Windonshore 0.0
+Nuclear 0.0
+/ 
+ 
+parameter 
+gen_maxramp / 
+NaturalgasCCGTwithCCSnewOT 47.0
+NaturalgasOCGTnew 87.0
+Nuclear 41.25
+/ 
+ 
+parameter 
+gen_mindown / 
+NaturalgasCCGTwithCCSnewOT 4.0
+Nuclear 8.0
+/ 
+ 
+parameter 
+gen_minup / 
+NaturalgasCCGTwithCCSnewOT 4.0
+Nuclear 24.0
+/ 
+ 
+parameter 
+gen_startupcost / 
+NaturalgasCCGTwithCCSnewOT 141.0
+NaturalgasOCGTnew 3.1
+Nuclear 195.0
+/ 
+ 
+parameter 
+gen_inertia / 
+NaturalgasCCGTwithCCSnewOT 5.0
+NaturalgasOCGTnew 5.0
+Nuclear 7.0
+/ 
+ 
+parameter 
+gen_unitsize / 
+NaturalgasCCGTwithCCSnewOT 750.0
+NaturalgasOCGTnew 50.0
+Nuclear 1650.0
+/ 
+ 
+parameter 
+gen_capex2050 / 
+NaturalgasCCGTwithCCSnewOT 102.56018023
+NaturalgasOCGTnew 24.91119239
+Solar 32.79259243
+Windoffshore 138.79076922
+Windonshore 61.98114104
+Nuclear 406.44089674
+/ 
+ 
+parameter 
+gen_varom / 
+NaturalgasCCGTwithCCSnewOT 0.00148104
+NaturalgasOCGTnew 3.244e-05
+Solar 0.0
+Windoffshore 0.003
+Windonshore 0.002
+Nuclear 0.00442909
+/ 
+ 
+parameter 
+gen_fom / 
+NaturalgasCCGTwithCCSnewOT 32.77173727
+NaturalgasOCGTnew 13.72618664
+Solar 6.9232503
+Windoffshore 85.76176303
+Windonshore 22.99384504
+Nuclear 80.21987496
+/ 
+ 
+parameter 
+gen_fuelcost2050 / 
+InterconnectortoContinentalEurope 0.144
+InterconnectortoIreland 0.144
+NaturalgasCCGTwithCCSnewOT 0.05520021
+NaturalgasOCGTnew 0.06892556
+Nuclear 0.00560171
+/ 
+ 
+parameter 
+gen_cap2area / 
+Solar 40.0
+Windoffshore 5.0
+Windonshore 3.0
+/ 
+ 
+parameter 
+gen_af / 
+InterconnectortoContinentalEurope 1.0
+InterconnectortoIreland 1.0
+NaturalgasCCGTwithCCSnewOT 0.88
+NaturalgasOCGTnew 0.95
+Solar 0.0
+Windoffshore 0.0
+Windonshore 0.0
+Nuclear 0.91
+/ 
+ 
+parameter 
+gen_mingen / 
+InterconnectortoContinentalEurope 0.0
+InterconnectortoIreland 0.0
+NaturalgasCCGTwithCCSnewOT 0.5
+NaturalgasOCGTnew 0.2
+Solar 1.0
+Windoffshore 1.0
+Windonshore 1.0
+Nuclear 0.5
+/ 
+ 
+parameter 
+gen_peakaf / 
+InterconnectortoContinentalEurope 1.0
+InterconnectortoIreland 1.0
+NaturalgasCCGTwithCCSnewOT 0.88
+NaturalgasOCGTnew 0.95
+Solar 0.0
+Windoffshore 0.24
+Windonshore 0.17
+Nuclear 0.91
+/ 
+ 

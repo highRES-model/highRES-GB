@@ -1,12 +1,14 @@
+$ONEPS
+
+* Data input script
+
 Sets
 
-h hours /
-$BATINCLUDE tstep_%year%.dd
-/
+lt / UP, LO, FX /
 
 
 r regions /
-$BATINCLUDE regions.dd
+$BATINCLUDE %vre_restrict%_regions.dd
 /
 
 z zones /
@@ -14,132 +16,92 @@ $BATINCLUDE zones.dd
 /
 
 g /
-$BATINCLUDE generator_all.dd
+$BATINCLUDE %psys_scen%_gen_set_all.dd
 /
 non_vre(g) /
-$BATINCLUDE generator_nonvre.dd
+$BATINCLUDE %psys_scen%_gen_set_nonvre.dd
 /
 vre(g) /
-$BATINCLUDE generator_vre.dd
+$BATINCLUDE %psys_scen%_gen_set_vre.dd
 /
 
 ;
+
+$INCLUDE %weather_yr%_temporal.dd
 
 alias(z,z_alias) ;
 
 Sets
 
 trans transmission techs /
-$BATINCLUDE transmission_all.dd
+$INCLUDE trans_set_all.dd
 /
 
 trans_links(z,z_alias,trans) transmission links /
-$BATINCLUDE transmission_links.dd
+$INCLUDE trans_links.dd
 /
 
 ;
 
-$ontext
-inter /
-$BATINCLUDE inter.dd
-/
-$offtext
+parameter gen_capex%model_yr%(g);
+parameter gen_varom(g);
+parameter gen_fom(g);
+parameter gen_fuelcost%model_yr%(g);
+parameter gen_mingen(g);
+parameter gen_emisfac(g);
+parameter gen_maxramp(g);
+parameter gen_af(g);
+parameter gen_peakaf(g);
+parameter gen_cap2area(g);
+parameter gen_lim_pcap_z(z,g,lt);
+parameter gen_lim_ecap_z(z,g,lt);
+parameter gen_exist_pcap_z(z,g,lt);
+parameter gen_exist_ecap_z(z,g,lt);
+parameter gen_fx_natcap(g);
 
-;
+parameter gen_unitsize(non_vre);
+parameter gen_startupcost(non_vre);
+parameter gen_minup(non_vre);
+parameter gen_mindown(non_vre);
+parameter gen_inertia(non_vre);
 
-Parameter
+parameter trans_links_cap(z,z_alias,trans);
+parameter trans_links_dist(z,z_alias,trans);
+parameter trans_loss(trans);
+parameter trans_varom(trans);
+parameter trans_capex(trans);
 
-non_vre_cap_lim(z,non_vre)/
-$BATINCLUDE generator_lim_%nuc_restrict%.dd
-/
+parameter area(vre,z,r);
+parameter vre_gen(h,vre,r);
 
-area(vre,z,r) /
-$BATINCLUDE vre_areas_%year%_agg_%area_scen%.dd
-*$BATINCLUDE vre_areas_%year%_agg.dd
-*$BATINCLUDE vre_areas_%year%.dd
-/
+parameter demand(z,h);
 
-cap2area(vre) /
-$BATINCLUDE generator_cap2area.dd
-/
-
-trans_links_cap(z,z_alias,trans)/
-$BATINCLUDE transmission_links_cap.dd
-/
-
-trans_links_dist(z,z_alias,trans)/
-$BATINCLUDE transmission_links_dist.dd
-/
-
-demand(z,h)  demand per hour in MW
-/
-$BATINCLUDE %uktm_scen%_annual_demand_%year%.dd
-/
-
-vre_gen(vre,r,h) variable renewable generation (cap factor) by region hour and technology
-/
-$BATINCLUDE vre_%year%_agg_%area_scen%.dd
-*$BATINCLUDE vre_%year%_agg.dd
-*$BATINCLUDE vre_%year%.dd
-/
-
-fuelC(g) gbp 2050 per MWh
-/
-$BATINCLUDE generator_fuelcost2050.dd
-/
-
-uktm_gen_cap(g) UKTM installed capacities
-/
-$BATINCLUDE generator_capacities.dd
-/
-
-min_gen(non_vre) minimum activity
-/
-$BATINCLUDE generator_min_gen.dd
-/
-
-emis_fac(g) emissions factor in t per MWh
-/
-$BATINCLUDE generator_emission_factor.dd
-/
-
-max_ramp(g)
-/
-$BATINCLUDE generator_max_ramp.dd
-/
+scalar co2_budget;
 
 
-generator_capex(g)
-/
-$BATINCLUDE generator_capex2050.dd
-/
+$INCLUDE %psys_scen%_gen_parameters.dd
+$INCLUDE trans_parameters.dd
+$INCLUDE %esys_scen%_co2_budget.dd
 
-generator_varom(g)
-/
-$BATINCLUDE generator_varom.dd
-/
+* need to switch between aggregated and not for areas currently
 
-avail_factor(non_vre)
-/
-$BATINCLUDE generator_avail_factor.dd
-/
+$INCLUDE vre_areas_%weather_yr%_%vre_restrict%.dd
+*$BATINCLUDE vre_%weather_yr%_agg_new_%area_scen%.dd
+$INCLUDE %esys_scen%_annual_demand_%dem_yr%.dd
 
+$gdxin vre_%weather_yr%_%vre_restrict%.gdx
+$load vre_gen
 
+$IF %fx_natcap% == "YES" $INCLUDE %esys_scen%_gen_fx_natcap.dd
 
-trans_loss(trans)
-/
-$BATINCLUDE transmission_loss.dd
-/
+parameter gen_capex(g);
+parameter gen_fuelcost(g);
 
-trans_varom(trans)
-/
-$BATINCLUDE transmission_varom.dd
-/
-
-trans_capex(trans)
-/
-$BATINCLUDE transmission_capex.dd
-/
+gen_capex(g)=gen_capex%model_yr%(g);
+gen_fuelcost(g)=gen_fuelcost%model_yr%(g);
 
 
-;
+parameter exist_vre_cap_r(vre,z,r);
+
+*$BATINCLUDE vre_per_zone_2016.dd
+

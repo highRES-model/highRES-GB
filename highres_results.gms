@@ -1,6 +1,18 @@
 
 *execute_unload "%outname%"
 
+parameter o_gen_f_provision(h);
+parameter o_store_f_provision(h);
+parameter o_gen_res_provision(h);
+parameter o_store_res_provision(h);
+parameter o_gen_quick_res_provision(h);
+
+*o_gen_f_provision(h)=sum((z,non_vre)$(gen_lim(z,non_vre) and gen_max_res(non_vre,"f_response") > 0.),var_f_res.l(h,z,non_vre));
+*o_store_f_provision(h)=sum(s_lim(z,s)$(store_max_freq(s) > 0.),var_store_f_res.l(h,z,s));
+
+*o_gen_res_provision(h)=sum((z,non_vre)$(gen_lim(z,non_vre) and gen_max_res(non_vre,"reserve") > 0.),var_res.l(h,z,non_vre));
+*o_gen_quick_res_provision(h)=sum((z,non_vre)$(gen_lim(z,non_vre) and gen_quick(non_vre)),var_res_quick.l(h,z,non_vre));
+*o_store_res_provision(h)=sum(s_lim(z,s)$(store_max_res(s) > 0.),var_store_res.l(h,z,s));
 
 
 ***************
@@ -8,94 +20,78 @@
 ***************
 
 *Variable Costs
-parameter variableC;
-variableC=
-sum((non_vre_lim(z,non_vre),h),var_non_vre_gen.L(z,h,non_vre)*generator_varom(non_vre))
-+sum((vre_lim(vre,z,r),h),var_vre_gen.L(z,h,vre,r)*generator_varom(vre))
-+sum((trans_links(z,z_alias,trans),h),var_trans_flow.l(z,h,z_alias,trans)*trans_varom(trans))
+parameter o_variableC;
+o_variableC=
+sum((gen_lim(z,non_vre),h),var_gen.L(h,z,non_vre)*gen_varom(non_vre))
++sum((vre_lim(vre,z,r),h),var_vre_gen_r.L(h,z,vre,r)*gen_varom(vre))
++sum((trans_links(z,z_alias,trans),h),var_trans_flow.l(h,z,z_alias,trans)*trans_varom(trans))
 
 
-Parameter nonVREVarC;
-nonVREVarC=sum((non_vre_lim(z,non_vre),h),var_non_vre_gen.L(z,h,non_vre)*generator_varom(non_vre))
+Parameter o_nonVREVarC;
+o_nonVREVarC=sum((gen_lim(z,non_vre),h),var_gen.L(h,z,non_vre)*gen_varom(non_vre))
 
-parameter VREVarC ;
-VREVarC=sum((vre_lim(vre,z,r),h),var_vre_gen.L(z,h,vre,r)*generator_varom(vre))
+parameter o_VREVarC ;
+o_VREVarC=sum((vre_lim(vre,z,r),h),var_vre_gen_r.L(h,z,vre,r)*gen_varom(vre))
 
-parameter transVarC;
-transVarC=sum((trans_links(z,z_alias,trans),h),var_trans_flow.L(z,h,z_alias,trans)*trans_varom(trans))
+parameter o_transVarC;
+o_transVarC=sum((trans_links(z,z_alias,trans),h),var_trans_flow.L(h,z,z_alias,trans)*trans_varom(trans))
 
 
-* Annualised capital costs
-parameter capitalC;
-capitalC=sum(non_vre,var_non_vre_cap.L(non_vre)*generator_capex(non_vre))
-+sum(vre,var_vre_cap.L(vre)*generator_capex(vre))
-+sum(trans_links(z,z_alias,trans),var_trans_cap.l(z,z_alias,trans)*trans_links_dist(z,z_alias,trans)*trans_capex(trans))
+* Annualised fixed costs
+parameter o_capitalC;
+o_capitalC=sum(non_vre,var_new_pcap.L(non_vre)*gen_capex(non_vre))
++sum(vre,var_new_pcap.L(vre)*gen_capex(vre))
++sum(trans_links(z,z_alias,trans),var_trans_pcap.l(z,z_alias,trans)*trans_links_dist(z,z_alias,trans)*trans_capex(trans))
++sum(g,var_exist_pcap.l(g)*gen_fom(g))
 
-parameter nonVRECapC;
-nonVRECapC=sum(non_vre,var_non_vre_cap.L(non_vre)*generator_capex(non_vre))
+parameter o_nonVRECapC;
+o_nonVRECapC=sum(non_vre,var_new_pcap.L(non_vre)*gen_capex(non_vre))+sum(non_vre,var_exist_pcap.l(non_vre)*gen_fom(non_vre))
 
-parameter VRECapC;
-VRECapC= sum(vre,var_vre_cap.L(vre)*generator_capex(vre))
+parameter o_VRECapC;
+o_VRECapC= sum(vre,var_new_pcap.L(vre)*gen_capex(vre))+sum(vre,var_exist_pcap.l(vre)*gen_fom(vre))
 
-parameter transCapc;
-transCapc=sum(trans_links(z,z_alias,trans),var_trans_cap.l(z,z_alias,trans)*trans_links_dist(z,z_alias,trans)*trans_capex(trans))
+parameter o_transCapc;
+o_transCapc=sum(trans_links(z,z_alias,trans),var_trans_pcap.l(z,z_alias,trans)*trans_links_dist(z,z_alias,trans)*trans_capex(trans))
 
-* Storage costs
+* store costs
 
-*Variable Storage costs
-parameter variableStorageC;
-variableStorageC=sum((s_lim(z,s),h),var_store_gen.L(z,h,s)*storage_varom(s))
+*Variable store costs
+parameter o_variablestoreC;
+o_variablestoreC=sum((s_lim(z,s),h),var_store_gen.L(h,z,s)*store_varom(s))
 
-*Capital Storage Costs
-parameter capitalStorageC;
-capitalStorageC=sum(s,var_store_gen_cap.L(s)*storage_gen_capex(s)+var_store_gen_cap.L(s)*store_gen_to_cap(s)*storage_cap_capex(s))
+*Capital store Costs
+parameter o_capitalstoreC;
+o_capitalstoreC=sum(s,var_new_store_pcap.L(s)*store_p_capex(s)+var_new_store_ecap.L(s)*store_e_capex(s))
++sum(s,var_exist_store_pcap.L(s)*store_fom(s))
 
 *Total Capital Costs
-parameter capitalC_tot;
-capitalC_tot=capitalStorageC+capitalC
+parameter o_capitalC_tot;
+o_capitalC_tot=o_capitalstoreC+o_capitalC
 
 *Total Variable Costs
-parameter variableC_tot;
-variableC_tot=variableStorageC+variableC       ;
+parameter o_variableC_tot;
+o_variableC_tot=o_variablestoreC+o_variableC
 
 
 ***************
 *Emissions
 ***************
 
-parameter emissions(z,h,non_vre);
-emissions(z,h,non_vre)=var_non_vre_gen.L(z,h,non_vre)*emis_fac(non_vre) ;
+parameter o_emissions(h,z,non_vre);
+o_emissions(h,z,non_vre)=var_gen.L(h,z,non_vre)*gen_emisfac(non_vre) ;
 
-parameter emissions_all;
-emissions_all=Sum((z,h,non_vre), emissions(z,h,non_vre));
-
-
-
-***************
-*Curtailment
-***************
-
-$ontext
-parameter curtail(h);
-curtail(h)=sum((z,vre,r),var_vre_curtail.l(z,h,vre));
-
-*sum of curtailment over all regions
-parameter curtail_z (h,vre);
-curtail_z(h,vre)=sum(z,var_vre_curtail.l(z,h,vre))
+parameter o_emissions_all;
+o_emissions_all=Sum((h,z,non_vre), o_emissions(h,z,non_vre));
 
 
-*sum of curtailment over all regions and hours
-parameter curtail_z_h (vre);
-curtail_z_h(vre)=sum((z,h),var_vre_curtail.l(z,h,vre))
-$offtext
 
 
 ***************
 *Transmission
 ***************
 
-parameter var_trans_cap_sum(trans);
-var_trans_cap_sum(trans)=sum((z,z_alias),var_trans_cap.L(z,z_alias,trans))/2  ;
+parameter o_trans_cap_sum(trans);
+o_trans_cap_sum(trans)=sum((z,z_alias),var_trans_pcap.L(z,z_alias,trans))/2  ;
 
 
 
@@ -105,39 +101,72 @@ var_trans_cap_sum(trans)=sum((z,z_alias),var_trans_cap.L(z,z_alias,trans))/2  ;
 *Capacities
 ***************
 
-parameter vre_cap_z(vre,z);
-vre_cap_z(vre,z)=sum(vre_lim(vre,z,r),var_vre_cap_r.l(z,vre,r));
+*parameter vre_cap_z(vre,z);
+*vre_cap_z(vre,z)=sum(vre_lim(vre,z,r),var_vre_pcap_r.l(z,vre,r));
 
-parameter vre_cap_r(vre,r);
-vre_cap_r(vre,r)=sum(vre_lim(vre,z,r),var_vre_cap_r.l(z,vre,r));
+*parameter vre_cap_r(vre,r);
+*vre_cap_r(vre,r)=sum(vre_lim(vre,z,r),var_vre_pcap_r.l(z,vre,r));
 
-parameter vre_cap_tot(vre);
-vre_cap_tot(vre)=sum(vre_lim(vre,z,r),var_vre_cap_r.l(z,vre,r)) ;
+*parameter vre_cap_tot(vre);
+*vre_cap_tot(vre)=sum(vre_lim(vre,z,r),var_vre_pcap_r.l(z,vre,r)) ;
 
 
 ***************
 *Generation
 ***************
 
-parameter non_vre_gen_tot(non_vre);
-non_vre_gen_tot(non_vre)=sum((h,z),var_non_vre_gen.l(z,h,non_vre));
+parameter o_non_vre_gen_tot(non_vre);
+o_non_vre_gen_tot(non_vre)=sum((h,z),var_gen.l(h,z,non_vre));
 
-parameter non_vre_gen_out(non_vre,h);
-non_vre_gen_out(non_vre,h)= sum(z,var_non_vre_gen.l(z,h,non_vre)$(var_non_vre_gen.l(z,h,non_vre) >0.));
+parameter o_non_vre_gen_out(non_vre,h);
+o_non_vre_gen_out(non_vre,h)= sum(z,var_gen.l(h,z,non_vre));
 
+parameter o_vre_gen_out(vre,h);
+o_vre_gen_out(vre,h)=sum((z,r),var_vre_gen_r.l(h,z,vre,r)$vre_lim(vre,z,r))
 
-parameter vre_gen_out(vre,h);
-vre_gen_out(vre,h)=sum((z,r),var_vre_gen.l(z,h,vre,r)$vre_lim(vre,z,r))
-
-
-parameter gen_out(g,h);
-gen_out(vre,h)=vre_gen_out(vre,h) ;
-gen_out(non_vre,h)=non_vre_gen_out(non_vre,h) ;
+parameter o_vre_gen_tot(vre);
+o_vre_gen_tot(vre)=sum(h,o_vre_gen_out(vre,h));
 
 
+parameter o_gen(g,h);
+o_gen(g,h)=sum(z,var_gen.l(h,z,g));
 
-parameter vre_cap(vre);
-vre_cap(vre)=sum((z,r),var_vre_cap_r.l(z,vre,r));
+parameter o_gen_tot(g);
+o_gen_tot(g)=sum(h,o_gen(g,h));
+
+
+parameter o_pgen_tot_z(z);
+
+*o_pgen_tot_z(z)=sum(h,var_pgen.l(h,z));
+
+
+
+*parameter vre_cap(vre);
+*vre_cap(vre)=sum((z,r),var_vre_pcap_r.l(z,vre,r));
+
+***************
+*Curtailment
+***************
+
+*parameter curtail(h);
+*curtail(h)=sum((z,vre,r),var_vre_curtail.l(h,z,vre));
+
+*sum of curtailment over all regions
+*parameter curtail_z (h,vre);
+*curtail_z(h,vre)=sum((z,,var_vre_curtail.l(h,z,vre,r))
+
+
+*sum of curtailment over all regions and hours
+
+parameter vre_curtail(h,z,vre,r);
+
+vre_curtail(h,z,vre,r)= vre_gen(h,vre,r)*(var_new_vre_pcap_r.l(z,vre,r)+var_exist_vre_pcap_r.l(z,vre,r))-var_vre_gen_r.l(h,z,vre,r);
+
+parameter o_curtail(vre);
+o_curtail(vre)=sum((h,z,r),vre_curtail(h,z,vre,r))
+
+parameter o_curtail_frac_vregen(vre);
+o_curtail_frac_vregen(vre)=o_curtail(vre)/(o_curtail(vre)+o_gen_tot(vre));
 
 
 ***************
@@ -145,158 +174,155 @@ vre_cap(vre)=sum((z,r),var_vre_cap_r.l(z,vre,r));
 ***************
 
 
-parameter price(z,h);
-price(z,h)=eq_elc_balance.m(z,h);
+parameter o_eprice(z,h);
+o_eprice(z,h)=eq_elc_balance.m(z,h);
 
 
 *grossRet is the gross return fom power production (revenues - (variable)costs)
 
 *gross Margins non VRE
-parameter grossRet_non_vre(z,non_vre);
-grossRet_non_vre(z,non_vre)=sum(h,((price(z,h)*var_non_vre_gen.L(z,h,non_vre))- (var_non_vre_gen.L(z,h,non_vre)*generator_varom(non_vre))))  ;
+parameter o_grossRet_non_vre(z,non_vre);
+o_grossRet_non_vre(z,non_vre)=sum(h,((o_eprice(z,h)*var_gen.L(h,z,non_vre))- (var_gen.L(h,z,non_vre)*gen_varom(non_vre))))  ;
 
 
 *gross Margins VRE
-parameter grossRet_vre(z,vre,r);
-grossRet_vre(z,vre,r)=sum(h,(price(z,h)*var_vre_gen.L(z,h,vre,r))- (var_vre_gen.L(z,h,vre,r)*generator_varom(vre)))
+parameter o_grossRet_vre(z,vre,r);
+o_grossRet_vre(z,vre,r)=sum(h,(o_eprice(z,h)*var_vre_gen_r.L(h,z,vre,r))- (var_vre_gen_r.L(h,z,vre,r)*gen_varom(vre)))
 
 
-*gross Margins Storage
-parameter grossRet_store(z,s);
-grossRet_store(z,s)=sum(h,(price(z,h)*var_store_gen.L(z,h,s))- (var_store_gen.L(z,h,s)*storage_varom(s)))
+*gross Margins store
+parameter o_grossRet_store(z,s);
+o_grossRet_store(z,s)=sum(h,(o_eprice(z,h)*var_store_gen.L(h,z,s))- (var_store_gen.L(h,z,s)*store_varom(s)))
 
 
 
-scalar gen_costs;
-gen_costs=sum((z,h,non_vre),var_non_vre_gen.l(z,h,non_vre)*generator_varom(non_vre))+sum((vre_lim(vre,z,r),h),var_vre_gen.l(z,h,vre,r)*generator_varom(vre));
+scalar o_gen_costs;
+o_gen_costs=sum((h,z,non_vre),var_gen.l(h,z,non_vre)*gen_varom(non_vre))+sum((vre_lim(vre,z,r),h),var_vre_gen_r.l(h,z,vre,r)*gen_varom(vre));
 
-
-parameter sum_test;
-sum_test=sum(vre_lim(vre,z,r),var_vre_cap.l(vre));
 
 
 
 *sums up over all zones and gives installed capacity per renewable
-parameter var_vre_cap_z_sum(vre,r);
-var_vre_cap_z_sum(vre,r)=sum(z,var_vre_cap_r.L(z,vre,r));
+parameter o_vre_cap_z_sum(vre,r);
+o_vre_cap_z_sum(vre,r)=sum(z,var_new_vre_pcap_r.L(z,vre,r)+var_exist_vre_pcap_r.L(z,vre,r));
 
 
-parameter var_vre_cap_r_sum(z,vre) ;
-var_vre_cap_r_sum(z,vre)=sum(r,var_vre_cap_r.L(z,vre,r));
+parameter o_vre_cap_r_sum(z,vre) ;
+o_vre_cap_r_sum(z,vre)=sum(r,var_new_vre_pcap_r.L(z,vre,r)+var_exist_vre_pcap_r.L(z,vre,r));
 
 
 *sums up over all zones and gives installed capacity per generation type
-parameter var_non_vre_cap_z_sum(non_vre);
-var_non_vre_cap_z_sum(non_vre)=sum(z,var_non_vre_cap_z.L(z,non_vre));
+parameter o_nvre_cap_z_sum(non_vre);
+o_nvre_cap_z_sum(non_vre)=sum(z,var_tot_pcap_z.L(z,non_vre));
 
 
 *sums up over all hours +regions and gives the generated electricity per renewable type
-parameter var_vre_gen_sum_r(vre);
-var_vre_gen_sum_r(vre)=sum((z,h,r),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_r(vre);
+o_vre_gen_sum_r(vre)=sum((h,z,r),var_vre_gen_r.L(h,z,vre,r));
 
 
 *sums up over all hours +zones and gives the generated electricity per renewable type
-parameter var_vre_gen_sum_z(vre,r);
-var_vre_gen_sum_z(vre,r)=sum((z,h),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_z(vre,r);
+o_vre_gen_sum_z(vre,r)=sum((z,h),var_vre_gen_r.L(h,z,vre,r));
 
 
-parameter var_vre_gen_sum_r_z(z,vre);
-var_vre_gen_sum_r_z(z,vre)=sum((r,h),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_r_z(z,vre);
+o_vre_gen_sum_r_z(z,vre)=sum((r,h),var_vre_gen_r.L(h,z,vre,r));
 
 
-parameter var_vre_gen_sum_r_zone(z,h,vre);
-var_vre_gen_sum_r_zone(z,h,vre)=sum((r),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_r_zone(h,z,vre);
+o_vre_gen_sum_r_zone(h,z,vre)=sum((r),var_vre_gen_r.L(h,z,vre,r));
 
 
 
 *sums over all regions and zones and gives the generated electricity per generation type
-parameter var_vre_gen_sum_h(h,vre);
-var_vre_gen_sum_h(h,vre)=sum((z,r),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_h(h,vre);
+o_vre_gen_sum_h(h,vre)=sum((z,r),var_vre_gen_r.L(h,z,vre,r));
 
 
-parameter var_non_vre_gen_sum_zone(z,non_vre)  ;
-var_non_vre_gen_sum_zone(z,non_vre)=sum(h,var_non_vre_gen.L(z,h,non_vre));
+parameter o_gen_sum_zone(z,non_vre)  ;
+o_gen_sum_zone(z,non_vre)=sum(h,var_gen.L(h,z,non_vre));
 
 
 *sums up over all hours +zones and gives the generated electricity per generation type
-parameter var_non_vre_gen_sum_z(non_vre)  ;
-var_non_vre_gen_sum_z(non_vre)=sum((z,h),var_non_vre_gen.L(z,h,non_vre));
+parameter o_gen_sum_z(non_vre)  ;
+o_gen_sum_z(non_vre)=sum((z,h),var_gen.L(h,z,non_vre));
 
 *sums over all zones and gives the generated electricity per generation type
-parameter var_non_vre_gen_sum_h(h,non_vre)  ;
-var_non_vre_gen_sum_h(h,non_vre)=sum(z,var_non_vre_gen.L(z,h,non_vre));
+parameter o_gen_sum_h(h,non_vre)  ;
+o_gen_sum_h(h,non_vre)=sum(z,var_gen.L(h,z,non_vre));
 
 
-parameter var_store_gen_sum_h(h,s)  ;
-var_store_gen_sum_h(h,s)=sum(z,var_store_gen.L(z,h,s));
+parameter o_store_gen_sum_h(h,s)  ;
+o_store_gen_sum_h(h,s)=sum(z,var_store_gen.L(h,z,s));
 
 
 
-*parameter var_trans_cap_sum(z_alias);
-*var_trans_cap_sum(z_alias)=sum(z,var_trans_cap.L(z,z_alias))  ;
-*display var_trans_cap_sum;
+*parameter var_trans_pcap_sum(z_alias);
+*var_trans_pcap_sum(z_alias)=sum(z,var_trans_pcap.L(z,z_alias))  ;
+*display var_trans_pcap_sum;
 
-*sums over all hours and gives the electricity generated per zone and storage technology
-parameter var_store_gen_sum(z,s);
-var_store_gen_sum(z,s)=sum(h,var_store_gen.L(z,h,s));
+*sums over all hours and gives the electricity generated per zone and store technology
+parameter o_store_gen_sum(z,s);
+o_store_gen_sum(z,s)=sum(h,var_store_gen.L(h,z,s));
 
 
-*sums over all hours and zones and gives the electricity generated per zone and storage technology
-parameter var_store_gen_all(s);
-var_store_gen_all(s)=sum((z,h),var_store_gen.L(z,h,s));
+*sums over all hours and zones and gives the electricity generated per zone and store technology
+parameter o_store_gen_all(s);
+o_store_gen_all(s)=sum((z,h),var_store_gen.L(h,z,s));
 
 
 *sums up over all hours +zones and gives the generated electricity per generation type
-parameter var_non_vre_gen_sum_z(non_vre)  ;
-var_non_vre_gen_sum_z(non_vre)=sum((z,h),var_non_vre_gen.L(z,h,non_vre));
+parameter o_nvre_gen_sum_z(non_vre)  ;
+o_nvre_gen_sum_z(non_vre)=sum((z,h),var_gen.L(h,z,non_vre));
 
 
-parameter var_vre_gen_sum_r(vre);
-var_vre_gen_sum_r(vre)=sum((z,h,r),var_vre_gen.L(z,h,vre,r));
+parameter o_vre_gen_sum_r(vre);
+o_vre_gen_sum_r(vre)=sum((h,z,r),var_vre_gen_r.L(h,z,vre,r));
 
 ;
 
-parameter Residual_D(z,h);
-Residual_D(z,h)=demand(z,h)-sum(vre,var_vre_gen_sum_r_zone(z,h,vre));
+parameter o_Residual_D(z,h);
+o_Residual_D(z,h)=demand(z,h)-sum(vre,o_vre_gen_sum_r_zone(h,z,vre));
 
 $ontext
 *Average electricity price
 parameter price_mean(h);
-price_mean(h)= sum((z,non_vre),(price(z,h)*var_non_vre_gen.L(z,h,non_vre))/sum(vre,var_vre_gen_sum_r(vre)))
+price_mean(h)= sum((z,non_vre),(price(z,h)*var_gen.L(h,z,non_vre))/sum(vre,var_vre_gen_sum_r(vre)))
 
 
 parameter price_mean(h);
 price_mean(h)=
-(sum((z,non_vre),(price(z,h)*var_non_vre_gen.L(z,h,non_vre)))
-+sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(z,h,vre)))
-+sum((z,s),(price(z,h)*var_store_gen.L(z,h,s))))
-/(sum((z,vre),var_vre_gen_sum_r_zone(z,h,vre))+
-sum((z,non_vre),var_non_vre_gen.L(z,h,non_vre))
-+sum((z,s),var_store_gen.L(z,h,s)));
+(sum((z,non_vre),(price(z,h)*var_gen.L(h,z,non_vre)))
++sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(h,z,vre)))
++sum((z,s),(price(z,h)*var_store_gen.L(h,z,s))))
+/(sum((z,vre),var_vre_gen_sum_r_zone(h,z,vre))+
+sum((z,non_vre),var_gen.L(h,z,non_vre))
++sum((z,s),var_store_gen.L(h,z,s)));
 
 
 
 
 WORKS: parameter price_mean(h);
 price_mean(h)=
-(sum((z,non_vre),(price(z,h)*var_non_vre_gen.L(z,h,non_vre)))+sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(z,h,vre))))
-/(sum((z,vre),var_vre_gen_sum_r_zone(z,h,vre))+sum((z,non_vre),var_non_vre_gen.L(z,h,non_vre)));
+(sum((z,non_vre),(price(z,h)*var_gen.L(h,z,non_vre)))+sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(h,z,vre))))
+/(sum((z,vre),var_vre_gen_sum_r_zone(h,z,vre))+sum((z,non_vre),var_gen.L(h,z,non_vre)));
 display price_mean;
 
 parameter price_mean(h);
 price_mean(h)=
-(sum((z,non_vre),(price(z,h)*var_non_vre_gen.L(z,h,non_vre)))
-+sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(z,h,vre)))
-+sum((z,s),(price(z,h)*var_store_gen.L(z,h,s))
-/((((sum((z,vre),var_vre_gen_sum_r_zone(z,h,vre))+sum((z,non_vre),var_non_vre_gen.L(z,h,non_vre))+sum((z,s),var_store_gen.L(z,h,s)));
+(sum((z,non_vre),(price(z,h)*var_gen.L(h,z,non_vre)))
++sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(h,z,vre)))
++sum((z,s),(price(z,h)*var_store_gen.L(h,z,s))
+/((((sum((z,vre),var_vre_gen_sum_r_zone(h,z,vre))+sum((z,non_vre),var_gen.L(h,z,non_vre))+sum((z,s),var_store_gen.L(h,z,s)));
 display price_mean;
 
 parameter price_mean(h);
 price_mean(h)=
-(sum((z,non_vre),(price(z,h)*var_non_vre_gen.L(z,h,non_vre)))
-+sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(z,h,vre)))
-+sum((z,s),(price(z,h)*var_store_gen.L(z,h,s))
-/(((sum((z,vre),var_vre_gen_sum_r_zone(z,h,vre))+sum((z,non_vre),var_non_vre_gen.L(z,h,non_vre))+sum((z,s),var_store_gen.L(z,h,s)));
+(sum((z,non_vre),(price(z,h)*var_gen.L(h,z,non_vre)))
++sum((z,vre),(price(z,h)*var_vre_gen_sum_r_zone(h,z,vre)))
++sum((z,s),(price(z,h)*var_store_gen.L(h,z,s))
+/(((sum((z,vre),var_vre_gen_sum_r_zone(h,z,vre))+sum((z,non_vre),var_gen.L(h,z,non_vre))+sum((z,s),var_store_gen.L(h,z,s)));
 display price_mean;
 
 $offtext

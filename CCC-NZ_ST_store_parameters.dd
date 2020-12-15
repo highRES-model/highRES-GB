@@ -1,0 +1,182 @@
+parameter 
+store_lim_pcap_z / 
+Z1_1.PumpedHydro.UP 0.0
+Z1_2.PumpedHydro.UP 0.0
+Z1_3.PumpedHydro.UP 0.0
+Z1_4.PumpedHydro.UP 0.3
+Z2.PumpedHydro.UP 0.0
+Z3.PumpedHydro.UP 0.44
+Z4.PumpedHydro.UP 0.0
+Z5.PumpedHydro.UP 0.0
+Z6.PumpedHydro.UP 0.0
+Z7.PumpedHydro.UP 0.0
+Z8.PumpedHydro.UP 0.0
+Z9.PumpedHydro.UP 2.088
+Z10.PumpedHydro.UP 0.0
+Z11.PumpedHydro.UP 0.0
+Z12.PumpedHydro.UP 0.0
+Z13.PumpedHydro.UP 0.0
+Z14.PumpedHydro.UP 0.0
+Z15.PumpedHydro.UP 0.0
+Z16.PumpedHydro.UP 0.0
+Z17.PumpedHydro.UP 0.0
+Z1_1.Li-ion-4.UP inf
+Z1_2.Li-ion-4.UP inf
+Z1_3.Li-ion-4.UP inf
+Z1_4.Li-ion-4.UP inf
+Z2.Li-ion-4.UP inf
+Z3.Li-ion-4.UP inf
+Z4.Li-ion-4.UP inf
+Z5.Li-ion-4.UP inf
+Z6.Li-ion-4.UP inf
+Z7.Li-ion-4.UP inf
+Z8.Li-ion-4.UP inf
+Z9.Li-ion-4.UP inf
+Z10.Li-ion-4.UP inf
+Z11.Li-ion-4.UP inf
+Z12.Li-ion-4.UP inf
+Z13.Li-ion-4.UP inf
+Z14.Li-ion-4.UP inf
+Z15.Li-ion-4.UP inf
+Z16.Li-ion-4.UP inf
+Z17.Li-ion-4.UP inf
+/ 
+ 
+parameter 
+store_lim_ecap_z / 
+Z1_1.PumpedHydro.UP 0.0
+Z1_2.PumpedHydro.UP 0.0
+Z1_3.PumpedHydro.UP 0.0
+Z1_4.PumpedHydro.UP 1.3
+Z2.PumpedHydro.UP 0.0
+Z3.PumpedHydro.UP 10.0
+Z4.PumpedHydro.UP 0.0
+Z5.PumpedHydro.UP 0.0
+Z6.PumpedHydro.UP 0.0
+Z7.PumpedHydro.UP 0.0
+Z8.PumpedHydro.UP 0.0
+Z9.PumpedHydro.UP 15.4
+Z10.PumpedHydro.UP 0.0
+Z11.PumpedHydro.UP 0.0
+Z12.PumpedHydro.UP 0.0
+Z13.PumpedHydro.UP 0.0
+Z14.PumpedHydro.UP 0.0
+Z15.PumpedHydro.UP 0.0
+Z16.PumpedHydro.UP 0.0
+Z17.PumpedHydro.UP 0.0
+/ 
+ 
+parameter 
+store_exist_pcap_z / 
+Z1_1.PumpedHydro.FX 0.0
+Z1_2.PumpedHydro.FX 0.0
+Z1_3.PumpedHydro.FX 0.0
+Z1_4.PumpedHydro.FX 0.3
+Z2.PumpedHydro.FX 0.0
+Z3.PumpedHydro.FX 0.44
+Z4.PumpedHydro.FX 0.0
+Z5.PumpedHydro.FX 0.0
+Z6.PumpedHydro.FX 0.0
+Z7.PumpedHydro.FX 0.0
+Z8.PumpedHydro.FX 0.0
+Z9.PumpedHydro.FX 2.088
+Z10.PumpedHydro.FX 0.0
+Z11.PumpedHydro.FX 0.0
+Z12.PumpedHydro.FX 0.0
+Z13.PumpedHydro.FX 0.0
+Z14.PumpedHydro.FX 0.0
+Z15.PumpedHydro.FX 0.0
+Z16.PumpedHydro.FX 0.0
+Z17.PumpedHydro.FX 0.0
+/ 
+ 
+parameter 
+store_exist_ecap_z / 
+Z1_1.PumpedHydro.FX 0.0
+Z1_2.PumpedHydro.FX 0.0
+Z1_3.PumpedHydro.FX 0.0
+Z1_4.PumpedHydro.FX 1.3
+Z2.PumpedHydro.FX 0.0
+Z3.PumpedHydro.FX 10.0
+Z4.PumpedHydro.FX 0.0
+Z5.PumpedHydro.FX 0.0
+Z6.PumpedHydro.FX 0.0
+Z7.PumpedHydro.FX 0.0
+Z8.PumpedHydro.FX 0.0
+Z9.PumpedHydro.FX 15.4
+Z10.PumpedHydro.FX 0.0
+Z11.PumpedHydro.FX 0.0
+Z12.PumpedHydro.FX 0.0
+Z13.PumpedHydro.FX 0.0
+Z14.PumpedHydro.FX 0.0
+Z15.PumpedHydro.FX 0.0
+Z16.PumpedHydro.FX 0.0
+Z17.PumpedHydro.FX 0.0
+/ 
+ 
+parameter 
+store_max_freq / 
+PumpedHydro 0.5
+Li-ion-4 1.0
+/ 
+ 
+parameter 
+store_max_res / 
+PumpedHydro 1.0
+Li-ion-4 1.0
+/ 
+ 
+parameter 
+store_eff_in / 
+PumpedHydro 0.88
+Li-ion-4 0.93
+/ 
+ 
+parameter 
+store_eff_out / 
+PumpedHydro 0.88
+Li-ion-4 0.93
+/ 
+ 
+parameter 
+store_loss_per_hr / 
+PumpedHydro 0.0
+Li-ion-4 0.0
+/ 
+ 
+parameter 
+store_p_to_e / 
+PumpedHydro 8.45
+Li-ion-4 4.0
+/ 
+ 
+parameter 
+store_varom / 
+PumpedHydro 0.036
+Li-ion-4 0.0
+/ 
+ 
+parameter 
+store_ecapex2050 / 
+PumpedHydro 10.8479182
+Li-ion-4 7.46948275
+/ 
+ 
+parameter 
+store_pcapex2050 / 
+PumpedHydro 81.83797113
+Li-ion-4 6.31104924
+/ 
+ 
+parameter 
+store_fom / 
+PumpedHydro 26.61798473
+Li-ion-4 5.57357447
+/ 
+ 
+parameter 
+store_af / 
+PumpedHydro 0.95
+Li-ion-4 0.95
+/ 
+ 

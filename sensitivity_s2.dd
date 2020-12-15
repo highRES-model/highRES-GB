@@ -1,0 +1,24 @@
+parameter 
+gen_lim_pcap_z / 
+Z1_1.Nuclear.UP 0.0
+Z1_2.Nuclear.UP 0.0
+Z1_3.Nuclear.UP 0.0
+Z1_4.Nuclear.UP 0.0
+Z2.Nuclear.UP 0.0
+Z3.Nuclear.UP 0.0
+Z4.Nuclear.UP 0.0
+Z5.Nuclear.UP 0.0
+Z6.Nuclear.UP 0.0
+Z7.Nuclear.UP 0.0
+Z8.Nuclear.UP 0.0
+Z9.Nuclear.UP 0.0
+Z10.Nuclear.UP 0.0
+Z11.Nuclear.UP 0.0
+Z12.Nuclear.UP 6.6
+Z13.Nuclear.UP 0.0
+Z14.Nuclear.UP 0.0
+Z15.Nuclear.UP 0.0
+Z16.Nuclear.UP 0.0
+Z17.Nuclear.UP 3.3
+/ 
+ 
